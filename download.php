@@ -18,10 +18,24 @@ $format = $_POST['format'] ?? 'html';
 // パラメータが正しい形式であることを確認
 $count = (int)$count;
 
+// 検証
+if (is_null($count) || is_null($format)) {
+  exit('Missing parameters.');
+}
+
+if (!is_numeric($count) || $count < 1 || $count > 100) {
+  exit('Invalid count. Must be a number between 1 and 100.');
+}
+
+$allowedFormats = ['json', 'txt', 'html', 'md'];
+if (!in_array($format, $allowedFormats)) {
+  exit('Invalid type. Must be one of: ' . implode(', ', $allowedFormats));
+}
+
 // ユーザーを生成
 $users = RandomGenerator::users($count, $count);
 
-if ($format === 'markdown') {
+if ($format === 'md') {
     header('Content-Type: text/markdown');
     header('Content-Disposition: attachment; filename="users.md"');
     foreach ($users as $user) {
