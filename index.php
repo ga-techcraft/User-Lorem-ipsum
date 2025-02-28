@@ -12,7 +12,7 @@ require_once 'vendor/autoload.php';
 use Helpers\RandomGenerator;
 
 // ダミーデータを作成
-$restaurantChains = RandomGenerator::restaurantChains(1,1); // 2～3個のレストランチェーンを生成
+$restaurantChains = RandomGenerator::restaurantChains(2,3); // 2～3個のレストランチェーンを生成
 ?>
 
 <!DOCTYPE html>
